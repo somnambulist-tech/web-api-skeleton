@@ -1,0 +1,26 @@
+logLevel = "DEBUG"
+
+defaultEntryPoints = ["http", "https"]
+
+[entryPoints]
+  [entryPoints.http]
+  address = ":80"
+  [entryPoints.https]
+  address = ":443"
+    [entryPoints.https.tls]
+      [[entryPoints.https.tls.certificates]]
+      certFile = "/etc/traefik/certs/server.pem"
+      keyFile = "/etc/traefik/certs/server.key"
+
+[docker]
+domain = "example.dev"
+watch = true
+exposedByDefault = true
+network = ""
+
+# Docker server endpoint. Can be a tcp or a unix socket endpoint.
+# note: sockets must be provided via a volume mount otherwise, must be tcp.
+#
+# Required; written in by Dockerfile build
+#
+#endpoint = "unix:///var/run/docker.sock"

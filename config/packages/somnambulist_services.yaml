@@ -1,0 +1,39 @@
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    Somnambulist\ReadModels\EventSubscriber\IdentityMapClearerSubscriber:
+        tags: ['kernel.event_subscriber']
+
+    Somnambulist\Domain\Events\Publishers\Doctrine\DomainEventPublisher:
+        tags: ['doctrine.event_subscriber']
+
+    Somnambulist\Domain\Events\Messenger\Serializer:
+
+    somnambulist.domain.event_serializer:
+        alias: Somnambulist\Domain\Events\Messenger\Serializer
+
+    Somnambulist\Domain\Commands\CommandBus:
+        alias: Somnambulist\Domain\Commands\Messenger\CommandBus
+
+    Somnambulist\Domain\Commands\Messenger\CommandBus:
+        public: true
+
+    Somnambulist\Domain\Events\EventBus:
+        alias: Somnambulist\Domain\Events\Messenger\EventBus
+
+    Somnambulist\Domain\Events\Messenger\EventBus:
+        public: true
+
+    Somnambulist\Domain\Queries\QueryBus:
+        alias: Somnambulist\Domain\Queries\Messenger\QueryBus
+
+    Somnambulist\Domain\Queries\Messenger\QueryBus:
+        public: true
+
+    Somnambulist\ApiBundle\ArgumentResolvers\:
+        resource: '../../vendor/somnambulist/api-bundle/src/ArgumentResolvers/'
+        tags:
+            - { name: controller.argument_value_resolver, priority: 105 }

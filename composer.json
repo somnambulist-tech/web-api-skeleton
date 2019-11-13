@@ -1,0 +1,95 @@
+{
+    "name": "somnambulist/symfony-micro-service",
+    "description": "A pre-configured Symfony 4+ project designed for micro services with docker files",
+    "keywords": ["framework", "symfony", "doctrine", "ddd", "micro service", "php-pm"],
+    "type": "project",
+    "license": "MIT",
+    "require": {
+        "php": "^7.2",
+        "ext-ctype": "*",
+        "ext-json": "*",
+        "ext-iconv": "*",
+        "adamsafr/form-request-bundle": "^0.1.0",
+        "doctrine/doctrine-bundle": "^1.6.10",
+        "doctrine/doctrine-migrations-bundle": "^2.0.0",
+        "doctrine/orm": "^2.6",
+        "ramsey/uuid": "~3.8",
+        "sensiolabs/security-checker": "^5.0",
+        "somnambulist/api-bundle": "~1.3.0",
+        "somnambulist/domain": "~2.2.0",
+        "somnambulist/read-models": "^1.0.0",
+        "symfony/console": "4.3.*",
+        "symfony/dotenv": "4.3.*",
+        "symfony/flex": "^1.3.1",
+        "symfony/framework-bundle": "4.3.*",
+        "symfony/messenger": "4.3.*",
+        "symfony/monolog-bundle": "~3.4",
+        "symfony/proxy-manager-bridge": "4.3.*",
+        "symfony/property-access": "4.3.*",
+        "symfony/serializer": "4.3.*",
+        "symfony/validator": "4.3.*",
+        "symfony/yaml": "4.3.*"
+    },
+    "require-dev": {
+        "dama/doctrine-test-bundle": "^5.0",
+        "doctrine/doctrine-fixtures-bundle": "~3.2",
+        "fzaninotto/faker": "~1.8",
+        "garethp/http-playback": "~1.2",
+        "liip/test-fixtures-bundle": "~1.3",
+        "phpunit/phpunit": "~8.0",
+        "symfony/browser-kit": "4.3.*",
+        "symfony/css-selector": "4.3.*",
+        "symfony/debug-bundle": "4.3.*",
+        "symfony/phpunit-bridge": "4.3.*",
+        "symfony/stopwatch": "4.3.*",
+        "symfony/web-profiler-bundle": "4.3.*"
+    },
+    "config": {
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true,
+        "process-timeout": 3600,
+        "bin-dir": "bin"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "App\\Tests\\": "tests/"
+        }
+    },
+    "replace": {
+        "paragonie/random_compat": "2.*",
+        "symfony/polyfill-ctype": "*",
+        "symfony/polyfill-iconv": "*",
+        "symfony/polyfill-php71": "*",
+        "symfony/polyfill-php70": "*",
+        "symfony/polyfill-php56": "*"
+    },
+    "scripts": {
+        "auto-scripts": {
+            "cache:clear": "symfony-cmd",
+            "assets:install %PUBLIC_DIR%": "symfony-cmd",
+            "security-checker security:check": "script"
+        },
+        "post-install-cmd": [
+            "@auto-scripts"
+        ],
+        "post-update-cmd": [
+            "@auto-scripts"
+        ]
+    },
+    "conflict": {
+        "symfony/symfony": "*"
+    },
+    "extra": {
+        "symfony": {
+            "allow-contrib": false,
+            "require": "4.3.*"
+        }
+    }
+}

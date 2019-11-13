@@ -1,0 +1,36 @@
+doctrine:
+    dbal:
+        # configure these for your database server
+        driver: 'pdo_pgsql'
+        server_version: '10.0'
+        url: '%env(resolve:DATABASE_URL)%'
+        schema_filter: '~^(?!messenger_messages)~'
+        mapping_types:
+            # doctrine + postgres sometimes screws up and prefixes text with an _...
+            _text: string
+
+    orm:
+        auto_generate_proxy_classes: true
+        naming_strategy: doctrine.orm.naming_strategy.underscore
+        auto_mapping: true
+        metadata_cache_driver: apcu
+        query_cache_driver: apcu
+        result_cache_driver:
+            type: redis
+            host: '%env(REDIS_HOST)%'
+            port: '%env(REDIS_PORT)%'
+
+        mappings:
+            App\Domain\Models:
+                is_bundle: false
+                type: xml
+                dir: '%kernel.project_dir%/config/mappings/models'
+                prefix: 'App\Domain\Models'
+                alias: App
+
+            Somnambulist\Domain\Entities\Types:
+                is_bundle: false
+                type: xml
+                dir: '%kernel.project_dir%/config/mappings/somnambulist'
+                prefix: 'Somnambulist\Domain\Entities\Types'
+                alias: Somnambulist

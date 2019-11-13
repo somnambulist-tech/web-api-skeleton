@@ -1,0 +1,49 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    route.requirements.id: '[0-9]+'
+    route.requirements.provider: '[a-z\-\_0-9]+'
+    route.requirements.slug: '[a-z\-\_0-9]+'
+    route.requirements.type: '[a-z\-\_0-9]+'
+    route.requirements.uuid: '([a-fA-F0-9]{8}-(?:[a-fA-F0-9]{4}-){3}[a-fA-F0-9]{12}){1}'
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    #
+    # App Services that need container resolution
+    #
+
+    App\Delivery\Api\:
+        resource: '../src/Delivery/Api'
+        tags: ['controller.service_arguments']
+
+    App\Delivery\Console\:
+        resource: '../src/Delivery/Console'
+        tags: ['console.command']
+
+    App\Domain\Services\:
+        resource: '../src/Domain/Services'
+        exclude: '../src/Domain/Services/{Command|Query}Handlers/*'
+        public: true
+
+    App\Domain\Services\CommandHandlers\:
+        resource: '../src/Domain/Services/CommandHandlers/*'
+        tags: [{ name: messenger.message_handler, bus: command.bus }]
+
+    App\Domain\Services\QueryHandlers\:
+        resource: '../src/Domain/Services/QueryHandlers/*'
+        tags: [{ name: messenger.message_handler, bus: query.bus }]
+
+    App\Infrastructure\Persistence\Repositories\:
+        resource: '../src/Infrastructure/Persistence/Repositories/*'
+
+    # Add repository interface mappings here to provide an implementation for a repository
+    #App\Domain\Services\Repositories\MyModelRepository:
+    #    alias:  App\Infrastructure\Persistence\Repositories\MyModelRepository
+    #    public: true

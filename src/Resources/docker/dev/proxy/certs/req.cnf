@@ -1,0 +1,21 @@
+[req]
+distinguished_name = req_distinguished_name
+x509_extensions = v3_req
+prompt = no
+[req_distinguished_name]
+C = UK
+ST = London
+L = London
+O = YourCompany
+OU = Services
+CN = *.example.dev
+[v3_req]
+keyUsage = critical, digitalSignature, keyAgreement
+extendedKeyUsage = serverAuth
+subjectAltName = @alt_names
+[alt_names]
+DNS.1 = *.example.dev
+DNS.2 = dns.example.dev
+DNS.3 = proxy.example.dev
+DNS.4 = admin.example.dev
+DNS.5 = app.example.dev

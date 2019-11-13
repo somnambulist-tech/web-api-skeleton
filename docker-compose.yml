@@ -1,0 +1,101 @@
+version: '3.5'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: src/Resources/docker/dev/app/Dockerfile
+    networks:
+      - backend
+    labels:
+      traefik.port: 8080
+      traefik.frontend.rule: "Host:app.example.dev"
+
+  redis:
+    image: redis:alpine
+    networks:
+      - backend
+    labels:
+      traefik.enable: "false"
+
+  postgres:
+    image: postgres:12-alpine
+    environment:
+      POSTGRES_DB: app_db
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: secret
+    volumes:
+      - app_db:/var/lib/postgresql/data
+    ports:
+      - "54321:5432"
+    networks:
+      - backend
+    labels:
+      traefik.enable: "false"
+
+  rabbitmq:
+    image: rabbitmq:3.7-management-alpine
+    environment:
+      RABBITMQ_ERLANG_COOKIE: rabbitmqcookienamehere
+    volumes:
+      - rabbitmq:/var/lib/rabbitmq
+    ports:
+      - "25673:15672"
+      - "25672:5672"
+    networks:
+      - backend
+    labels:
+      traefik.port: 15672
+      traefik.frontend.rule: "Host:rabbit.example.dev"
+
+  proxy:
+    build:
+      context: .
+      dockerfile: src/Resources/docker/dev/proxy/Dockerfile
+      args:
+        PROXY_DOCKER_HOST: ${DOCKER_HOST_ALT:-unix:///var/run/docker.sock}
+    restart: always
+    command: --api --docker
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
+    labels:
+      traefik.port: 8080
+      traefik.frontend.rule: "Host:proxy.example.dev"
+    networks:
+      - backend
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  dns:
+    build:
+      context: .
+      dockerfile: src/Resources/docker/dev/dns/Dockerfile
+      args:
+        DNS_HOST_IP: ${DNS_HOST_IP:-127.0.0.1}
+    restart: always
+    ports:
+      - "1034:53/udp"
+      - "5380:8080"
+    logging:
+      options:
+        max-size: 10m
+    networks:
+      - backend
+    labels:
+      traefik.enable: "true"
+      traefik.port: 8080
+      traefik.frontend.rule: "Host:dns.example.dev"
+
+networks:
+  backend:
+    driver: bridge
+    name: example_network
+
+volumes:
+  app_db:
+    name: app-volumes_app_db
+  rabbitmq:
+    name: app-volumes_rabbitmq
+

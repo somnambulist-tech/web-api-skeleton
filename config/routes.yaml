@@ -1,0 +1,5 @@
+
+api.index:
+    path: /
+    controller: 'App\Delivery\Api\IndexController'
+    methods: [GET]
