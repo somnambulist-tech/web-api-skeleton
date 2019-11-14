@@ -25,7 +25,9 @@ Assorted readme files are included for different parts of the service setup:
 
 ## Getting Started
 
-Create a new project using composer: `composer create-project somnambulist/symfony-micro-service <folder>`
+Create a new project using composer:
+
+`composer create-project somnambulist/symfony-micro-service <folder> --no-scripts`
 
 Customise the base files as you see fit; change names, (especially the service names), config values etc
 to suite your needs. Then: `docker-compose up -d` to start the docker environment in dev mode.
