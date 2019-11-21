@@ -18,7 +18,7 @@ if [[ ! -f "/app/ppm.json" ]]; then
 fi
 
 # applying any outstanding migrations to avoid out-of-date dbs
-/app/bin/console doctrine:migrations:migrate --no-interaction
+/app/bin/console doctrine:migrations:migrate --no-interaction --allow-no-migration
 
 sleep 5
 

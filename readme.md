@@ -21,6 +21,7 @@ Assorted readme files are included for different parts of the service setup:
  * [Compiled Containers](readme-compiled-containers.md)
  * [Service Discovery](readme-service-discovery.md)
  * [Setting up SSL](readme-ssl.md)
+ * [Setting up Supervisor for Tasks](readme-supervisor-tasks.md)
  * [Testing](readme-testing.md)
 
 ## Getting Started
