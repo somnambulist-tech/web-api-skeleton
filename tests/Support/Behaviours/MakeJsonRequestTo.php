@@ -2,6 +2,8 @@
 
 namespace App\Tests\Support\Behaviours;
 
+use Somnambulist\Domain\Utils\EntityAccessor;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use function dump;
 use function json_decode;
 use function json_encode;
@@ -43,7 +45,7 @@ trait MakeJsonRequestTo
     {
         $content = null;
         $files   = $server = [];
-        $client  = static::getClient();
+        $client  = EntityAccessor::call($this, 'getClient', WebTestCase::class);
 
         if (isset($payload['files'])) {
             $files = $payload['files'];
