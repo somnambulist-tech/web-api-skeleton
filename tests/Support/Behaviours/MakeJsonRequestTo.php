@@ -43,7 +43,7 @@ trait MakeJsonRequestTo
     {
         $content = null;
         $files   = $server = [];
-        $client  = static::createClient();
+        $client  = static::getClient();
 
         if (isset($payload['files'])) {
             $files = $payload['files'];

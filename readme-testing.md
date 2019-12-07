@@ -9,13 +9,22 @@ coverage support be sure to modify the Dockerfiles and add `php7-pecl-xdebug`.
 The following helpers are available by default in the `tests/Support` folder:
 
  * BootKernel - auto-boot the `App\Kernel` on test setUp
+ * BootTestClient - auto-boot the test Client service on test setUp (use instead of BootKernel)
  * DoctrineHelper - accessors for getting Doctrine EntityManager or a configured EntityLocator
  * GenerateRouteTo - use named routes conveniently in tests
- * MakeJsonRequestTo - wrap SF Client to make a JSON request to a resource
+ * MakeJsonRequestTo - wrap SF Client to make a JSON request to a resource (requires `BootTestClient`)
  * UseObjectFactoryHelper - wrapper around faker to provide test objects
 
 Tests should incorporate both domain tests including object assignment / event raising tests
 and functional tests of any delivery mechanism.
+
+Starting with Symfony 4.4, the kernel should not be pre-booted before fetching a client and in
+Symfony 5.0 this will raise an exception. Sometimes it is necessary to pre-boot the kernel to
+perform test setup. In these cases, e.g. to access the router before running tests, you can
+use the `BootTestClient` trait instead. This will boot the kernel via the `static::createClient`
+method. If you need access to the client, use `static::getClient()` in place of `createClient`.
+Note: this should only be needed when using `WebTestCase`. Do not mix both `BootKernel` and
+`BootTestClient` - they are mutually exclusive.
 
 The ObjectFactoryHelper adds a simple way of adding pre-configured domain objects for testing.
 You can define your own factory classes and add them in the constructor of the helper. These
