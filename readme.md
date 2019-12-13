@@ -1,6 +1,8 @@
 # Symfony Micro Service Starter Project
 
 This is a skeleton project that pre-configures a Symfony 4.3+ project for use as a micro service.
+This project is intended to be used in conjunction with: [Data Service](https://github.com/dave-redfern/data-service-skeleton)
+
 The setup includes:
 
  * doctrine
@@ -20,9 +22,12 @@ Assorted readme files are included for different parts of the service setup:
 
  * [Compiled Containers](readme-compiled-containers.md)
  * [Service Discovery](readme-service-discovery.md)
- * [Setting up SSL](readme-ssl.md)
  * [Setting up Supervisor for Tasks](readme-supervisor-tasks.md)
  * [Testing](readme-testing.md)
+
+__Note:__ the data services pieces have been moved to a separate project to keep the micro services
+scope narrow. See [Data Service](https://github.com/dave-redfern/data-service-skeleton) for the basic
+files.
 
 ## Getting Started
 
@@ -48,13 +53,6 @@ useful. The following files should be updated:
 
  * .env
  * docker-compose*.yml
- * src/Resources/docker/dev/proxy/traefik.toml
- * src/Resources/docker/dev/proxy/certs/req.cnf
- * src/Resources/docker/dev/dns/Dockerfile
-
-If you do not wish to use the DNS / proxy services, then delete them and the configuration. It is
-recommended to extract that configuration into a separate "data" project to avoid having duplicate
-services.
 
 You should be sure to read [Compiled Containers](readme-compiled-containers.md).
 
@@ -62,14 +60,10 @@ You should be sure to read [Compiled Containers](readme-compiled-containers.md).
 
 The following docker services are pre-configured for development:
 
- * PostgreSQL 12
  * Redis
- * RabbitMQ 3.7 + management console
- * DNSmasq
- * Traefik 1.7
  * PHP 7.3 running php-pm 2.X
 
-Test config includes all services to successfully run tests, excluding DNS and Traefik.
+Test config includes all services to successfully run tests.
 
 Release / production only defines the app as it is intended to be deployed into a cluster.
 
@@ -89,21 +83,7 @@ and by the `bin/dc-*` scripts.
 
 #### DNS Resolution
 
-DNSmasq is included to provide local DNS resolution to avoid needing entries in your /etc/hosts file.
-Be sure to check out the instructions in [Service Discovery](readme-service-discovery.md).
-
-If you use a remote docker host, then the scripts will check for the following shell constants:
-
- * DNS_HOST_IP
- * DOCKER_HOST
- * DOCKER_HOST_ALT
-
-`DNS_HOST_IP` is the IP address of the _host_ running DNSmasq i.e. the docker host IP address.
-`DOCKER_HOST` is the host name of the docker host, and must be fully qualified. For example:
-`DOCKER_HOST="tcp://my-docker-host.example.dev:2375"`. This is presuming you have a trusted
-docker host that is not secured. If you do not have DNS translation, then `DOCKER_HOST_ALT`
-can be used with the IP address of the docker host: `DOCKER_HOST_ALT="tcp://192.168.1.2:2375"`
-The `_HOST_` constants are used in `docker-compose.yml` on the proxy service.
+DNS and Proxy where moved to [data service](https://github.com/dave-redfern/data-service-skeleton).
 
 ## Suggested Implementation Approach
 

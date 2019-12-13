@@ -10,7 +10,7 @@ services:
     networks:
       - backend
 
-  redis:
+  app-redis:
     image: redis:alpine
     networks:
       - backend

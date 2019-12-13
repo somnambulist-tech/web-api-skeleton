@@ -6,8 +6,8 @@ services:
       context: .
       dockerfile: src/Resources/docker/prod/app/Dockerfile
     networks:
-      - example_network
+      - app_network_backend
 
 networks:
-  example_network:
+  app_network_backend:
     external: true
