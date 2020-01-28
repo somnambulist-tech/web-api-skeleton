@@ -12,8 +12,8 @@ The setup includes:
  * profiler
  * command/query/domain event buses
  * test helpers
- * docker configuration including Postgres, Redis, dns, Traefik and RabbitMQ
- * docker is configured to use Docker volumes
+ * docker configuration for app and redis containers
+ * docker app container is configured without local mounts
  * shell scripts in `bin/` that call libs in docker
  * PHP container uses php-pm as the application server
  * Mutagen via SyncIt with a default configuration

@@ -14,6 +14,7 @@
         "doctrine/doctrine-migrations-bundle": "^2.0",
         "doctrine/orm": "^2.7",
         "ramsey/uuid": "~3.8",
+        "ocramius/proxy-manager": "2.2.*",
         "sensiolabs/security-checker": "^5.0",
         "somnambulist/api-bundle": "~1.3",
         "somnambulist/domain": "~2.2",
@@ -27,6 +28,7 @@
         "symfony/proxy-manager-bridge": "4.4.*",
         "symfony/property-access": "4.4.*",
         "symfony/serializer": "4.4.*",
+        "symfony/twig-bundle": "4.4.*",
         "symfony/validator": "4.4.*",
         "symfony/yaml": "4.4.*"
     },
