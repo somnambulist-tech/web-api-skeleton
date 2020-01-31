@@ -2,11 +2,12 @@
 
 namespace App\Tests\Support\Behaviours;
 
-use Somnambulist\Domain\Utils\EntityAccessor;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use RuntimeException;
 use function dump;
 use function json_decode;
 use function json_encode;
+use function property_exists;
+use function sprintf;
 
 /**
  * Class MakeJsonRequestTo
@@ -43,9 +44,13 @@ trait MakeJsonRequestTo
      */
     protected function makeJsonRequestTo(string $uri, string $method = 'GET', array $payload = [], int $expectedStatusCode = 200)
     {
+        if (!property_exists($this, '__kernelBrowserClient')) {
+            throw new RuntimeException(sprintf('Missing booted Kernel client, did you include %s ?', BootTestClient::class));
+        }
+
         $content = null;
         $files   = $server = [];
-        $client  = EntityAccessor::call($this, 'getClient', WebTestCase::class);
+        $client  = $this->__kernelBrowserClient;
 
         if (isset($payload['files'])) {
             $files = $payload['files'];

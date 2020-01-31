@@ -2,6 +2,8 @@
 
 namespace App\Tests\Support\Behaviours;
 
+use Symfony\Component\BrowserKit\AbstractBrowser;
+
 /**
  * Trait BootTestClient
  *
@@ -15,6 +17,11 @@ trait BootTestClient
 {
 
     /**
+     * @var AbstractBrowser
+     */
+    protected $__kernelBrowserClient;
+
+    /**
      * {@inheritDoc}
      */
     protected function setUp(): void
@@ -23,7 +30,7 @@ trait BootTestClient
             self::setKernelClass();
         }
 
-        self::createClient();
+        $this->__kernelBrowserClient = self::createClient();
 
         if (method_exists($this, 'setUpTests')) {
             $this->setUpTests();
