@@ -6,7 +6,7 @@
     "app-env": "dev",
     "debug": 1,
     "logging": 1,
-    "bootstrap": "PHPPM\\Bootstraps\\Symfony4",
+    "bootstrap": "PHPPM\\Bootstraps\\SomnambulistSymfony",
     "max-requests": 1000,
     "max-execution-time": 60,
     "populate-server-var": true,

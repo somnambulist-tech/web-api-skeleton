@@ -14,22 +14,15 @@
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
 
-###> symfony/web-server-bundle ###
-/.web-server-pid
-###< symfony/web-server-bundle ###
-
 # Ignore local .env files but add the .env
 # SF 4.2+ uses .env.*.local to override the .env
 /*user.ini
 /*tideways.ini
 .docker-sync
 /public/assets/
-/bin/doctrine*
-/bin/phpunit
-/bin/security-checker
-/bin/simple-phpunit
-/bin/swagger
-/bin/var-dump-server
+/bin/*
+!/bin/console
+!/bin/dc-*
 /tests/_output
 /tests/output
 .ppm
@@ -109,8 +102,3 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
-
-###> phpunit/phpunit ###
-/phpunit.xml
-.phpunit.result.cache
-###< phpunit/phpunit ###

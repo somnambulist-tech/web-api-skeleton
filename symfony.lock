@@ -5,9 +5,6 @@
     "beberlei/assert": {
         "version": "v3.2.6"
     },
-    "composer/ca-bundle": {
-        "version": "1.2.4"
-    },
     "dama/doctrine-test-bundle": {
         "version": "4.0",
         "recipe": {
@@ -120,18 +117,6 @@
     "fzaninotto/faker": {
         "version": "v1.8.0"
     },
-    "garethp/http-playback": {
-        "version": "v1.2.0"
-    },
-    "guzzlehttp/guzzle": {
-        "version": "6.4.1"
-    },
-    "guzzlehttp/promises": {
-        "version": "v1.3.1"
-    },
-    "guzzlehttp/psr7": {
-        "version": "1.6.1"
-    },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
@@ -161,6 +146,9 @@
     },
     "phar-io/version": {
         "version": "2.0.1"
+    },
+    "php": {
+        "version": "7.4"
     },
     "phpdocumentor/reflection-common": {
         "version": "2.0.0"
@@ -213,14 +201,11 @@
     "psr/container": {
         "version": "1.0.0"
     },
-    "psr/http-message": {
-        "version": "1.0.1"
+    "psr/event-dispatcher": {
+        "version": "1.0.0"
     },
     "psr/log": {
         "version": "1.1.2"
-    },
-    "ralouphie/getallheaders": {
-        "version": "3.0.3"
     },
     "ramsey/uuid": {
         "version": "3.8.0"
@@ -316,9 +301,6 @@
     "symfony/css-selector": {
         "version": "v4.3.8"
     },
-    "symfony/debug": {
-        "version": "v4.3.8"
-    },
     "symfony/debug-bundle": {
         "version": "4.1",
         "recipe": {
@@ -385,6 +367,12 @@
             "src/Controller/.gitignore",
             "src/Kernel.php"
         ]
+    },
+    "symfony/http-client": {
+        "version": "v5.0.4"
+    },
+    "symfony/http-client-contracts": {
+        "version": "v2.0.1"
     },
     "symfony/http-foundation": {
         "version": "v4.3.8"

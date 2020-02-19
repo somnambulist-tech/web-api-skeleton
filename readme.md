@@ -1,7 +1,7 @@
 # Symfony Micro Service Starter Project
 
-This is a skeleton project that pre-configures a Symfony 4.3+ project for use as a micro service.
-This project is intended to be used in conjunction with: [Data Service](https://github.com/dave-redfern/data-service-skeleton)
+This is a skeleton project that pre-configures a Symfony 5+ project for use as a micro service.
+This project is intended to be used in conjunction with: [Data Service](https://github.com/somnambulist-tech/data-service-skeleton)
 
 The setup includes:
 
@@ -26,7 +26,7 @@ Assorted readme files are included for different parts of the service setup:
  * [Testing](readme-testing.md)
 
 __Note:__ the data services pieces have been moved to a separate project to keep the micro services
-scope narrow. See [Data Service](https://github.com/dave-redfern/data-service-skeleton) for the basic
+scope narrow. See [Data Service](https://github.com/somnambulist-tech/data-service-skeleton) for the basic
 files.
 
 ## Getting Started
@@ -45,7 +45,7 @@ will checkout and use the current master version, instead of a tagged release.
 
 ### Recommended First Steps
 
-This project uses `App` and `example.dev` though out. Your first step would be to change the base PHP
+This project uses `App` and `example.dev` throughout. Your first step would be to change the base PHP
 namespace (if desired). PhpStorms refactoring / renaming is highly recommended for this action.
 
 The domain name is set in several places, it is strongly recommended to change this to something more
@@ -83,9 +83,15 @@ and by the `bin/dc-*` scripts.
 
 #### DNS Resolution
 
-DNS and Proxy where moved to [data service](https://github.com/dave-redfern/data-service-skeleton).
+DNS and Proxy where moved to [data service](https://github.com/somnambulist-tech/data-service-skeleton).
 
 ## Suggested Implementation Approach
+
+### Notes
+
+ * Twig is enabled for: `dev`, `test` and `docker` environments and disabled in `prod`
+ * As of 2020-02-19 the form-request bundle does not have an SF 5 stable release
+ * Docker ppm container requires the latest build with an SF 5 ppm version
 
 ### Domain
 
