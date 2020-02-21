@@ -1953,16 +1953,16 @@
         },
         {
             "name": "ramsey/uuid",
-            "version": "3.9.2",
+            "version": "3.9.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ramsey/uuid.git",
-                "reference": "7779489a47d443f845271badbdcedfe4df8e06fb"
+                "reference": "7e1633a6964b48589b142d60542f9ed31bd37a92"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ramsey/uuid/zipball/7779489a47d443f845271badbdcedfe4df8e06fb",
-                "reference": "7779489a47d443f845271badbdcedfe4df8e06fb",
+                "url": "https://api.github.com/repos/ramsey/uuid/zipball/7e1633a6964b48589b142d60542f9ed31bd37a92",
+                "reference": "7e1633a6964b48589b142d60542f9ed31bd37a92",
                 "shasum": ""
             },
             "require": {
@@ -2036,7 +2036,7 @@
                 "identifier",
                 "uuid"
             ],
-            "time": "2019-12-17T08:18:51+00:00"
+            "time": "2020-02-21T04:36:14+00:00"
         },
         {
             "name": "samj/fractal-bundle",
@@ -2124,16 +2124,16 @@
         },
         {
             "name": "somnambulist/api-bundle",
-            "version": "1.7.0",
+            "version": "1.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/somnambulist-tech/api-bundle.git",
-                "reference": "e070fc4d00addd61bad9927d86420fd823fdcc7f"
+                "reference": "7da7eec570e32bdd5357066308ffc2f359226ce3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/somnambulist-tech/api-bundle/zipball/e070fc4d00addd61bad9927d86420fd823fdcc7f",
-                "reference": "e070fc4d00addd61bad9927d86420fd823fdcc7f",
+                "url": "https://api.github.com/repos/somnambulist-tech/api-bundle/zipball/7da7eec570e32bdd5357066308ffc2f359226ce3",
+                "reference": "7da7eec570e32bdd5357066308ffc2f359226ce3",
                 "shasum": ""
             },
             "require": {
@@ -2183,7 +2183,7 @@
                 "json",
                 "symfony"
             ],
-            "time": "2020-02-18T21:20:54+00:00"
+            "time": "2020-02-20T14:29:59+00:00"
         },
         {
             "name": "somnambulist/collection",

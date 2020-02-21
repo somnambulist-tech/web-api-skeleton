@@ -16,6 +16,26 @@ services:
         autoconfigure: true
 
     #
+    # Custom monolog line formatters
+    #
+
+    monolog.formatter.default:
+        class: Monolog\Formatter\LineFormatter
+        arguments:
+            $format:                     "%%channel%%.%%level_name%%: %%message%% %%context%%\n"
+            $allowInlineLineBreaks:      true
+            $ignoreEmptyContextAndExtra: true
+
+    monolog.formatter.syslog:
+        class: Monolog\Formatter\LineFormatter
+        arguments:
+            $format:                     "[%%extra.request_id%%] %%channel%%.%%level_name%%: %%message%% %%context%%\n"
+            $allowInlineLineBreaks:      true
+            $ignoreEmptyContextAndExtra: true
+
+
+
+    #
     # App Services that need container resolution
     #
 

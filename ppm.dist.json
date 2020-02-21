@@ -12,5 +12,6 @@
     "populate-server-var": true,
     "socket-path": "var\/run\/ppm\/",
     "pidfile": "var\/run\/ppm\/ppm.pid",
-    "cgi-path": "\/usr\/bin\/php-cgi"
+    "cgi-path": "\/usr\/bin\/php-cgi",
+    "static-directory": "public"
 }
