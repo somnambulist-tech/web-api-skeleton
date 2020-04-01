@@ -49,7 +49,6 @@ services:
 
     App\Domain\Services\:
         resource: '../src/Domain/Services'
-        exclude: '../src/Domain/Services/*'
         public: true
 
     App\Application\CommandHandlers\:
