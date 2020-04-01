@@ -49,15 +49,15 @@ services:
 
     App\Domain\Services\:
         resource: '../src/Domain/Services'
-        exclude: '../src/Domain/Services/{Command|Query}Handlers/*'
+        exclude: '../src/Domain/Services/*'
         public: true
 
-    App\Domain\Services\CommandHandlers\:
-        resource: '../src/Domain/Services/CommandHandlers/*'
+    App\Application\CommandHandlers\:
+        resource: '../src/Application/CommandHandlers/*'
         tags: [{ name: messenger.message_handler, bus: command.bus }]
 
-    App\Domain\Services\QueryHandlers\:
-        resource: '../src/Domain/Services/QueryHandlers/*'
+    App\Application\QueryHandlers\:
+        resource: '../src/Application/QueryHandlers/*'
         tags: [{ name: messenger.message_handler, bus: query.bus }]
 
     App\Infrastructure\Persistence\Repositories\:
