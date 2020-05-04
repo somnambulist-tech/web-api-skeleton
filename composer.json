@@ -9,7 +9,7 @@
         "ext-ctype": "*",
         "ext-json": "*",
         "ext-iconv": "*",
-        "adamsafr/form-request-bundle": "dev-master",
+        "adamsafr/form-request-bundle": "^0.1",
         "doctrine/doctrine-bundle": "^2.0",
         "doctrine/doctrine-migrations-bundle": "^2.0",
         "doctrine/orm": "^2.7",
