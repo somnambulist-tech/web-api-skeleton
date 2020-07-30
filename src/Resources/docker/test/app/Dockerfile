@@ -1,5 +1,5 @@
 
-FROM somnambulist/php-ppm:7.3-latest
+FROM somnambulist/php-ppm:7.4-latest
 ENV TERM=xterm-256color
 
 RUN apk --update add ca-certificates \

@@ -10,8 +10,6 @@
       <path value="$PROJECT_DIR$/vendor/composer" />
       <path value="$PROJECT_DIR$/vendor/psr/cache" />
       <path value="$PROJECT_DIR$/vendor/psr/container" />
-      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php72" />
-      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php73" />
       <path value="$PROJECT_DIR$/vendor/symfony/config" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-idn" />
       <path value="$PROJECT_DIR$/vendor/symfony/cache-contracts" />
@@ -38,7 +36,6 @@
       <path value="$PROJECT_DIR$/vendor/doctrine/migrations" />
       <path value="$PROJECT_DIR$/vendor/ramsey/uuid" />
       <path value="$PROJECT_DIR$/vendor/doctrine/dbal" />
-      <path value="$PROJECT_DIR$/vendor/jdorn/sql-formatter" />
       <path value="$PROJECT_DIR$/vendor/doctrine/lexer" />
       <path value="$PROJECT_DIR$/vendor/doctrine/annotations" />
       <path value="$PROJECT_DIR$/vendor/doctrine/inflector" />
@@ -59,9 +56,6 @@
       <path value="$PROJECT_DIR$/vendor/somnambulist/domain" />
       <path value="$PROJECT_DIR$/vendor/somnambulist/read-models" />
       <path value="$PROJECT_DIR$/vendor/symfony/stopwatch" />
-      <path value="$PROJECT_DIR$/vendor/zendframework/zend-code" />
-      <path value="$PROJECT_DIR$/vendor/zendframework/zend-eventmanager" />
-      <path value="$PROJECT_DIR$/vendor/symfony/inflector" />
       <path value="$PROJECT_DIR$/vendor/symfony/validator" />
       <path value="$PROJECT_DIR$/vendor/symfony/proxy-manager-bridge" />
       <path value="$PROJECT_DIR$/vendor/symfony/monolog-bridge" />
@@ -121,19 +115,38 @@
       <path value="$PROJECT_DIR$/vendor/psr/event-dispatcher" />
       <path value="$PROJECT_DIR$/vendor/symfony/http-client-contracts" />
       <path value="$PROJECT_DIR$/vendor/symfony/http-client" />
+      <path value="$PROJECT_DIR$/vendor/webimpress/safe-writer" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/vendor/symfony/amqp-messenger" />
+      <path value="$PROJECT_DIR$/vendor/symfony/redis-messenger" />
+      <path value="$PROJECT_DIR$/vendor/symfony/string" />
+      <path value="$PROJECT_DIR$/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/vendor/symfony/property-info" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-grapheme" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/vendor/symfony/doctrine-messenger" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-invoker" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/code-unit" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-eventmanager" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-code" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-zendframework-bridge" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/sql-formatter" />
+      <path value="$PROJECT_DIR$/vendor/ramsey/collection" />
+      <path value="$PROJECT_DIR$/vendor/brick/math" />
+      <path value="$PROJECT_DIR$/vendor/voku/portable-ascii" />
     </include_path>
   </component>
   <component name="PhpInterpreters">
     <interpreters>
       <interpreter id="36404b45-1f30-46df-a05b-b05dd3b0a3c0" name="app" home="docker-compose://DATA" debugger_id="php.debugger.XDebug">
-        <remote_data DOCKER_ACCOUNT_NAME="photon" DOCKER_COMPOSE_SERVICE_NAME="app" DOCKER_REMOTE_PROJECT_PATH="/opt/project" INTERPRETER_PATH="php" HELPERS_PATH="/opt/.phpstorm_helpers" INITIALIZED="false" VALID="true" RUN_AS_ROOT_VIA_SUDO="false">
+        <remote_data INTERPRETER_PATH="php" HELPERS_PATH="/opt/.phpstorm_helpers" INITIALIZED="false" VALID="true" RUN_AS_ROOT_VIA_SUDO="false" DOCKER_ACCOUNT_NAME="photon" DOCKER_COMPOSE_SERVICE_NAME="app" DOCKER_REMOTE_PROJECT_PATH="/opt/project">
+          <type_data command="RUN" />
           <dockerComposeConfigurationPaths>
             <item value="$PROJECT_DIR$/docker-compose.yml" />
           </dockerComposeConfigurationPaths>
           <envs>
             <env name="APP_ENV" value="test" />
           </envs>
-          <type_data command="RUN" />
         </remote_data>
       </interpreter>
     </interpreters>
