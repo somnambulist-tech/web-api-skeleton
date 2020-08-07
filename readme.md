@@ -61,7 +61,7 @@ You should be sure to read [Compiled Containers](readme-compiled-containers.md).
 The following docker services are pre-configured for development:
 
  * Redis
- * PHP 7.3 running php-pm 2.X
+ * PHP 7.4 running php-pm 2.X
 
 Test config includes all services to successfully run tests.
 
@@ -90,7 +90,6 @@ DNS and Proxy where moved to [data service](https://github.com/somnambulist-tech
 ### Notes
 
  * Twig is enabled for: `dev`, `test` and `docker` environments and disabled in `prod`
- * As of 2020-02-19 the form-request bundle does not have an SF 5 stable release
  * Docker ppm container requires the latest build with an SF 5 ppm version
 
 ### Domain
