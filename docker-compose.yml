@@ -8,15 +8,15 @@ services:
     networks:
       - app_network_backend
     labels:
-      traefik.port: 8080
-      traefik.frontend.rule: "Host:app.example.dev"
+      traefik.enable: true
+      traefik.http.routers.dns.rule: "Host(`app.example.dev`)"
+      traefik.http.routers.dns.tls: true
+      traefik.http.services.dns.loadbalancer.server.port: 8080
 
   app-redis:
     image: redis:alpine
     networks:
       - app_network_backend
-    labels:
-      traefik.enable: "false"
 
 networks:
   app_network_backend:

@@ -17,7 +17,7 @@ same as the other configurations. For example and `src/Resources/docker/dev/supe
 folder and then create a new `Dockerfile` that contains:
 
 ```dockerfile
-FROM somnambulist/php-ppm:7.3-latest
+FROM somnambulist/php-ppm:7.4-latest
 ENV TERM=xterm-256color
 
 RUN apk --update add ca-certificates \
@@ -91,8 +91,6 @@ The `docker-compose.yml` then needs a new service so that supervisor is built wi
       - app
     networks:
       - backend
-    labels:
-      traefik.enable: "false"
 ```
 
 ## Supervisor Config
@@ -150,15 +148,14 @@ Finally, to keep source files up-to-date in the supervisor container, a SyncIt c
 needed:
 
 ```yaml
-        supervisor_source_files:
-            source: "${PROJECT_DIR}"
-            target: "docker://{docker:name=${APP_SERVICE_SUPERVISOR}:name}/app"
-            options:
-                sync-mode: one-way-replica
-            ignore:
-                - "composer.*"
+    supervisor_source_files:
+        source: "${PROJECT_DIR}"
+        target: "docker://{docker:name=${APP_SERVICE_SUPERVISOR}:name}/app"
+        options:
+            sync-mode: one-way-replica
+        ignore:
+            - "composer.*"
 ```
 
 Additional tasks could be added for composer files etc, otherwise the container will need
 rebuilding if dependencies change.
-s
