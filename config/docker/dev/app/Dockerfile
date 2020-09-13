@@ -12,12 +12,12 @@ RUN apk --update add ca-certificates \
     && rm -rf /var/cache/apk/* /tmp/*
 
 # setup custom PHP ini files
-COPY src/Resources/docker/dev/app/conf.d/zz-custom.ini *user.ini /etc/php7/conf.d/
+COPY config/docker/dev/app/conf.d/zz-custom.ini *user.ini /etc/php7/conf.d/
 
 # app will be mounted here, so set this as our working directory
 WORKDIR /app
 
-COPY src/Resources/docker/dev/app/docker-entrypoint.sh /docker-entrypoint.sh
+COPY config/docker/dev/app/docker-entrypoint.sh /docker-entrypoint.sh
 RUN chmod 755 /docker-entrypoint.sh
 
 COPY ppm*.json ./

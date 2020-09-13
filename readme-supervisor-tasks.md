@@ -31,15 +31,15 @@ RUN apk --update add ca-certificates \
     && rm -rf /var/cache/apk/* /tmp/*
 
 # setup custom PHP ini files
-COPY src/Resources/docker/dev/supervisor/conf.d/zz-custom.ini /etc/php7/conf.d/
+COPY config/docker /etc/php7/conf.d/
 
 WORKDIR /app
 
-COPY src/Resources/docker/dev/supervisor/docker-entrypoint.sh /docker-entrypoint.sh
+COPY config/docker /docker-entrypoint.sh
 RUN chmod 755 /docker-entrypoint.sh
 
-COPY src/Resources/docker/dev/supervisor/conf.d/supervisord.conf /etc/supervisor/supervisord.conf
-COPY src/Resources/docker/dev/supervisor/supervisor.d/* /etc/supervisor/conf.d/
+COPY config/docker /etc/supervisor/supervisord.conf
+COPY config/docker /etc/supervisor/conf.d/
 
 COPY composer.* ./
 COPY .env* ./

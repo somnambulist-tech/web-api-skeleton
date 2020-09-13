@@ -4,7 +4,7 @@ services:
   app:
     build:
       context: .
-      dockerfile: src/Resources/docker/test/app/Dockerfile
+      dockerfile: config/docker/test/app/Dockerfile
     depends_on:
       - postgres
     networks:

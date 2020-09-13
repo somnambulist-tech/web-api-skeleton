@@ -4,7 +4,7 @@ services:
   app:
     build:
       context: .
-      dockerfile: src/Resources/docker/prod/app/Dockerfile
+      dockerfile: config/docker/prod/app/Dockerfile
     networks:
       - app_network_backend
 

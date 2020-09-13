@@ -12,12 +12,12 @@ RUN apk --update add ca-certificates \
     && rm -rf /var/cache/apk/* /tmp/*
 
 # setup custom PHP ini files
-COPY src/Resources/docker/test/app/conf.d/zz-custom.ini /etc/php7/conf.d/
+COPY config/docker/prod/app/conf.d/zz-custom.ini /etc/php7/conf.d/
 
 # app will be mounted here, so set this as our working directory
 WORKDIR /app
 
-COPY src/Resources/docker/test/app/docker-entrypoint.sh /docker-entrypoint.sh
+COPY config/docker/prod/app/docker-entrypoint.sh /docker-entrypoint.sh
 RUN chmod 755 /docker-entrypoint.sh
 
 COPY ppm*.json ./
@@ -32,4 +32,4 @@ COPY . .
 EXPOSE 8080
 
 # run php-pm on the custom ip so it is externally available
-CMD [ "/docker-entrypoint.sh", "start", "--workers=2", "--cgi-path=/usr/bin/php-cgi", "--host=0.0.0.0" ]
+CMD [ "/docker-entrypoint.sh", "start", "--host=0.0.0.0" ]
