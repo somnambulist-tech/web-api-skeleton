@@ -14,5 +14,6 @@ return [
     Symfony\Bundle\TwigBundle\TwigBundle::class => ['dev' => true, 'test' => true, 'docker' => true],
     Symfony\Bundle\WebProfilerBundle\WebProfilerBundle::class => ['dev' => true, 'test' => true, 'docker' => true],
     Somnambulist\ApiBundle\SomnambulistApiBundle::class => ['all' => true],
+    Somnambulist\Bundles\ReadModelsBundle\SomnambulistReadModelsBundle::class => ['all' => true],
     App\Resources\ResourcesBundle::class => ['all' => true],
 ];

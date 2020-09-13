@@ -23,6 +23,10 @@ framework:
                 middleware:
                     - validation
 
+            job.queue:
+                middleware:
+                    - validation
+
         transports:
             # https://symfony.com/doc/current/messenger.html#transport-configuration
             domain_events:
@@ -33,12 +37,20 @@ framework:
                         name: domain_events
                         type: fanout
                         durable: true
+            job_queue:
+                dsn: '%env(MESSENGER_TRANSPORT_DSN)%/job_queue'
+                options:
+                    exchange:
+                        name: job_queue
+                        type: direct
+                        durable: true
 
             failed: 'doctrine://default?queue_name=failed'
             sync: 'sync://'
 
         routing:
             # Route your messages to the transports
-            Somnambulist\Domain\Events\AbstractDomainEvent: domain_events
             Somnambulist\Domain\Commands\AbstractCommand: sync
+            Somnambulist\Domain\Events\AbstractEvent: domain_events
+            Somnambulist\Domain\Jobs\AbstractJob: job_queue
             Somnambulist\Domain\Queries\AbstractQuery: sync

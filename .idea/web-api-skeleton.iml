@@ -81,9 +81,11 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/sebastian/version" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/sensiolabs/security-checker" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/somnambulist/api-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/somnambulist/attribute-model" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/somnambulist/collection" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/somnambulist/domain" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/somnambulist/read-models" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/somnambulist/read-models-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/amqp-messenger" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/browser-kit" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/cache" />

@@ -13,3 +13,10 @@ somnambulist_api:
         exception_to_json: true
         json_to_post: true
         request_id: true
+
+somnambulist_read_models:
+    connections:
+        'default': 'doctrine.dbal.default_connection'
+    subscribers:
+        request_manager_clearer: true
+        messenger_manager_clearer: true
