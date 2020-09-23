@@ -4,6 +4,7 @@ namespace App\Tests\Support\Behaviours;
 
 use RuntimeException;
 use function dump;
+use function in_array;
 use function json_decode;
 use function json_encode;
 use function property_exists;
@@ -66,7 +67,9 @@ trait MakeJsonRequestTo
         $response = $client->getResponse();
 
         if ($response->getStatusCode() != $expectedStatusCode) {
-            dump(json_decode($response->getContent(), true));
+            if (in_array('--debug', $_SERVER['argv'])) {
+                dump(json_decode($response->getContent(), true));
+            }
         }
 
         $this->assertEquals($expectedStatusCode, $response->getStatusCode());
