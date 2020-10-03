@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: config/docker/dev/app/Dockerfile
     networks:
-      - app_network_backend
+      - mycompany_network_backend
     labels:
       traefik.enable: true
       traefik.http.routers.dns.rule: "Host(`app.example.dev`)"
@@ -16,8 +16,8 @@ services:
   app-redis:
     image: redis:alpine
     networks:
-      - app_network_backend
+      - mycompany_network_backend
 
 networks:
-  app_network_backend:
+  mycompany_network_backend:
     external: true
