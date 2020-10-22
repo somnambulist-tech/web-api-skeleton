@@ -36,6 +36,14 @@ services:
 
 
     #
+    # Allow injecting service container in Doctrine Migrations
+    #
+    Doctrine\Migrations\Version\DbalMigrationFactory:
+    App\Resources\Factories\MigrationFactoryDecorator:
+
+
+
+    #
     # App Services that need container resolution
     #
 

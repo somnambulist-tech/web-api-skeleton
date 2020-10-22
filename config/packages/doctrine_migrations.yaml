@@ -1,3 +1,6 @@
 doctrine_migrations:
     migrations_paths:
         'App\Resources\Migrations': '%kernel.project_dir%/src/Resources/Migrations'
+
+    services:
+        'Doctrine\Migrations\Version\MigrationFactory': 'App\Resources\Factories\MigrationFactoryDecorator'
