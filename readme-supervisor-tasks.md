@@ -1,51 +1,111 @@
-# Background Tasks with Supervisor
+# Background Tasks
 
 If you need to run cron or scheduled / background tasks, it is best to place these in a
 dedicated container that runs supervisor. While you can add supervisor to your standard
 app container this does mean that your main app is running multiple different processes
-and containerising allows use to isolate these separate concerns.
+and containerising allows us to isolate these separate concerns.
 
-This is a suggested approach that has it's own trade offs, but does allow for a resilient
-supervisor process.
+## Running as individual processes
 
-This is a real-world example of adding a supervisor rabbit consumer process using Messenger.
-
-## Docker Configuration
-
-Create a new docker config for the supervisor service. This should be per environment the
-same as the other configurations. For example and `src/Resources/docker/dev/supervisor`
-folder and then create a new `Dockerfile` that contains:
+The preferred method for running background tasks is to create separate containers for
+each process and as the main `CMD` run that console process. For example: to run the
+`messenger:consume` command you could set up the following container:
 
 ```dockerfile
-FROM somnambulist/php-ppm:7.4-latest
+FROM somnambulist/php-ppm:8.0-latest
 ENV TERM=xterm-256color
 
 RUN apk --update add ca-certificates \
     && apk update \
     && apk upgrade \
     && apk --no-cache add -U \
-    php7-pdo_pgsql \
-    php7-pgsql \
-    php7-pecl-amqp \
-    supervisor \
+    php8-pdo_pgsql \
+    php8-pgsql \
+    php8-pecl-amqp \
     && rm -rf /var/cache/apk/* /tmp/*
 
 # setup custom PHP ini files
-COPY config/docker /etc/php7/conf.d/
+COPY config/docker/messenger/php /etc/php8/conf.d/
 
 WORKDIR /app
 
-COPY config/docker /docker-entrypoint.sh
+COPY config/docker/messenger/docker-entrypoint.sh /docker-entrypoint.sh
 RUN chmod 755 /docker-entrypoint.sh
-
-COPY config/docker /etc/supervisor/supervisord.conf
-COPY config/docker /etc/supervisor/conf.d/
 
 COPY composer.* ./
 COPY .env* ./
 
-RUN composer install --no-suggest --no-scripts --quiet \
-    && rm -rf /tmp/*
+RUN composer install --no-scripts --quiet && rm -rf /tmp/*
+
+COPY . .
+
+CMD ["/docker-entrypoint.sh"]
+```
+
+The entrypoint script could be something like the following:
+
+```shell script
+#!/usr/bin/env bash
+
+set -e
+cd /app
+
+[[ -d "/app/var" ]] || mkdir -m 0777 "/app/var"
+[[ -d "/app/var/cache" ]] || mkdir -m 0777 "/app/var/cache"
+[[ -d "/app/var/logs" ]] || mkdir -m 0777 "/app/var/logs"
+[[ -d "/app/var/tmp" ]] || mkdir -m 0777 "/app/var/tmp"
+
+# wait for the main app container to run before starting processes
+# should avoid running migrations at the same time, or remove this and the migrations
+# line to avoid conflicts.
+sleep 10
+
+/app/bin/console messenger:setup-transports
+/app/bin/console messenger:consume <queue_name> --memory-limit=256M
+```
+
+## Running with Supervisor
+
+This is a suggested approach that has its own trade offs, but does allow for a resilient
+supervisor process.
+
+This is a real-world example of adding a supervisor rabbit consumer process using Messenger.
+
+### Docker Configuration
+
+Create a new docker config for the supervisor service. This should be per environment the
+same as the other configurations. For example and `src/Resources/docker/dev/supervisor`
+folder and then create a new `Dockerfile` that contains:
+
+```dockerfile
+FROM somnambulist/php-ppm:8.0-latest
+ENV TERM=xterm-256color
+
+RUN apk --update add ca-certificates \
+    && apk update \
+    && apk upgrade \
+    && apk --no-cache add -U \
+    php8-pdo_pgsql \
+    php8-pgsql \
+    php8-pecl-amqp \
+    supervisor \
+    && rm -rf /var/cache/apk/* /tmp/*
+
+# setup custom PHP ini files
+COPY config/docker/supervisor/custom.ini /etc/php8/conf.d/zz-custom.ini
+
+WORKDIR /app
+
+COPY config/docker/supervisor/docker-entrypoint.sh /docker-entrypoint.sh
+RUN chmod 755 /docker-entrypoint.sh
+
+COPY config/docker/supervisor/supervisord.conf /etc/supervisor/supervisord.conf
+COPY config/docker/supervisor/conf.d /etc/supervisor/conf.d/
+
+COPY composer.* ./
+COPY .env* ./
+
+RUN composer install --no-scripts --quiet && rm -rf /tmp/*
 
 COPY . .
 
@@ -73,6 +133,7 @@ cd /app
 # line to avoid conflicts.
 sleep 30
 
+/app/bin/console doctrine:migrations:sync-metadata-storage
 /app/bin/console doctrine:migrations:migrate --no-interaction
 
 sleep 5
@@ -93,7 +154,7 @@ The `docker-compose.yml` then needs a new service so that supervisor is built wi
       - backend
 ```
 
-## Supervisor Config
+### Supervisor Config
 
 Now add the following supervisor config files to a conf.d folder:
 
@@ -144,7 +205,7 @@ until the max memory hits 256MB at which point it will die and supervisor will r
 
 ## Sync'ing Source Changes
 
-Finally, to keep source files up-to-date in the supervisor container, a SyncIt config is
+Finally, to keep source files up-to-date in the containers, a SyncIt config is
 needed:
 
 ```yaml

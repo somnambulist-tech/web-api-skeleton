@@ -3,6 +3,7 @@
 namespace App;
 
 use IlluminateAgnostic\Str\Support\Str;
+use InvalidArgumentException;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
@@ -39,7 +40,7 @@ class Kernel extends BaseKernel
         $class = str_replace('\\', '_', $class).Str::studly(php_sapi_name()).ucfirst($this->environment).($this->debug ? 'Debug' : '').'Container';
 
         if (!preg_match('/^[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*$/', $class)) {
-            throw new \InvalidArgumentException(sprintf('The environment "%s" contains invalid characters, it can only contain characters allowed in PHP class names.', $this->environment));
+            throw new InvalidArgumentException(sprintf('The environment "%s" contains invalid characters, it can only contain characters allowed in PHP class names.', $this->environment));
         }
 
         return $class;

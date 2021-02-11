@@ -17,7 +17,11 @@ if [[ ! -f "/app/ppm.json" ]]; then
     cp "/app/ppm.dist.json" "/app/ppm.json"
 fi
 
+# little wait for dbs
+sleep 5
+
 # applying any outstanding migrations to avoid out-of-date dbs
+/app/bin/console doctrine:migrations:sync-metadata-storage
 /app/bin/console doctrine:migrations:migrate --no-interaction --allow-no-migration
 
 sleep 5

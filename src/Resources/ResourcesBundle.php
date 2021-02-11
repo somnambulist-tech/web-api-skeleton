@@ -2,23 +2,17 @@
 
 namespace App\Resources;
 
-use Somnambulist\Domain\Doctrine\TypeBootstrapper;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Somnambulist\Components\Domain\Doctrine\TypeBootstrapper;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
  * Class ResourcesBundle
  *
- * @package App\Resources
+ * @package    App\Resources
  * @subpackage App\Resources\ResourcesBundle
  */
 class ResourcesBundle extends Bundle
 {
-
-    public function build(ContainerBuilder $container)
-    {
-
-    }
 
     public function boot()
     {

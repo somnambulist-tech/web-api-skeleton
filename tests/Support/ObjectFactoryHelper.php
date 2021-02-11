@@ -6,36 +6,28 @@ use Faker\Factory;
 use Faker\Generator;
 use InvalidArgumentException;
 use RuntimeException;
-use Somnambulist\Domain\Entities\Types\Identity\Uuid;
-use Somnambulist\Domain\Utils\IdentityGenerator;
+use Somnambulist\Components\Domain\Entities\Types\Identity\Uuid;
+use Somnambulist\Components\Domain\Utils\IdentityGenerator;
 use function array_key_exists;
+use function array_keys;
+use function in_array;
+use function sprintf;
 
 /**
  * Class ObjectFactoryHelper
  *
- * @package App\Tests\Support
+ * @package    App\Tests\Support
  * @subpackage App\Tests\Support\ObjectFactoryHelper
  *
- * @property-read Uuid $uuid
+ * @property-read Uuid      $uuid
+ * @property-read Generator $faker
  */
 class ObjectFactoryHelper
 {
 
-    /**
-     * @var array
-     */
-    private $factories;
+    private array     $factories;
+    private Generator $faker;
 
-    /**
-     * @var Generator
-     */
-    private $faker;
-
-    /**
-     * Constructor
-     *
-     * @param string $locale To initialise faker with
-     */
     public function __construct(string $locale = Factory::DEFAULT_LOCALE)
     {
         $this->faker     = Factory::create($locale);
@@ -45,7 +37,17 @@ class ObjectFactoryHelper
         ];
     }
 
+    public function __call($name, $arguments)
+    {
+        return $this->magicHelper($name, $arguments, 'Method "%s" not found on "%s"');
+    }
+
     public function __get($name)
+    {
+        return $this->magicHelper($name);
+    }
+
+    private function magicHelper(string $name, array $arguments = [], string $message = 'Property "%s" not found on "%s"'): object
     {
         if ('uuid' === $name) {
             return $this->uuid();
@@ -58,12 +60,12 @@ class ObjectFactoryHelper
             return $this->from($name);
         }
 
-        throw new RuntimeException(sprintf('Property "%s" not found on "%s"', $name, static::class));
+        throw new RuntimeException(sprintf($message, $name, static::class));
     }
 
     /**
      * @return Generator
-     * @see https://github.com/fzaninotto/Faker#formatters
+     * @see https://fakerphp.github.io/formatters/
      */
     public function faker(): Generator
     {

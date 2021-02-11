@@ -3,12 +3,12 @@
 namespace App\Tests\Support\Behaviours;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Somnambulist\Domain\Doctrine\AbstractEntityLocator;
+use Somnambulist\Components\Domain\Doctrine\AbstractEntityLocator;
 
 /**
  * Trait DoctrineHelper
  *
- * @package App\Tests\Support\Behaviours
+ * @package    App\Tests\Support\Behaviours
  * @subpackage App\Tests\Support\Behaviours\DoctrineHelper
  */
 trait DoctrineHelper

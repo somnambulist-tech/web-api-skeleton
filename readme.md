@@ -29,6 +29,9 @@ __Note:__ the data services pieces have been moved to a separate project to keep
 scope narrow. See [Data Service](https://github.com/somnambulist-tech/data-service-skeleton) for the basic
 files.
 
+If you are working with micro services then be sure to check out: [Project Manager](https://github.com/somnambulist-tech/project-manager)
+a CLI toolkit that makes working with multiple services a little bit easier.
+
 ## Getting Started
 
 Create a new project using composer:
@@ -42,6 +45,9 @@ environment is setup.
 
 __Note:__ to use the latest version add `dev-master` as the last argument when creating a project. This
 will checkout and use the current master version, instead of a tagged release.
+
+Alternatively if using `Project Manager` with the default templates: `spm new:service <service_name> api`
+or without the service name/template to use the wizard.
 
 ### Recommended First Steps
 
@@ -61,7 +67,7 @@ You should be sure to read [Compiled Containers](readme-compiled-containers.md).
 The following docker services are pre-configured for development:
 
  * Redis
- * PHP 7.4 running php-pm 2.X
+ * PHP 8.0 running php-pm 2.X
 
 Test config includes all services to successfully run tests.
 
@@ -165,7 +171,7 @@ then receives a Persistence implementation. The interface should be kept as simp
  * store(Object $object): bool
  * destroy(Object $object): bool
  
-Where the interface is coded to that specific object. Under the hood this may use Doctrine ObjectManager
+The interface should be coded to a specific object type. Under the hood this may use Doctrine ObjectManager
 to persist and delete objects.
 
 Note that it is not necessary to call `->flush()` as a command bus should be used that includes DB
@@ -275,7 +281,7 @@ The Delivery folder is for any output mechanisms that will produce a response fr
 is where any API or web controllers live, console commands, etc. ViewModels would live in this part
 of the system.
 
-Each major output type should be kept segregated in it's own namespace to avoid polluting e.g. the web
+Each major output type should be kept segregated in its own namespace to avoid polluting e.g. the web
 responses with API responses.
 
 By default `Api` and `Console` are provided and are mapped as services already in the `services.yaml` file.
@@ -285,10 +291,10 @@ This versioning should be done at the controller, form and transformer level. Ea
 have its own controllers, form requests and transformers. If a particular version does not change one
 output, you could re-use a previous version if needs be.
 
-FormRequests are a concept from Laravel where you can type hint a validate request object that will
+FormRequests are a concept from Laravel where you can type hint a validated request object that will
 ensure that the request contains the data defined in the rules. It provides a somewhat cleaner setup
 to the Symfony Form library, that can be rather complex to deal with. Using this library is entirely
-optional. See [Form Request Bundle](https://github.com/adamsafr/form-request-bundle) for more details.
+optional. See [Form Request Bundle](https://github.com/somnambulist-tech/form-request-bundle) for more details.
 
 For controllers it is best to group then around an aggregate root e.g. there is a User aggregate, so
 there would be a `Users` folder in the `src/Delivery/Api/V1` folder. Within this folder you could
@@ -306,7 +312,7 @@ system similar to DingoAPI. When used in conjunction with the command and query 
 for very thin and light-weight controllers; keeping most of the business logic within the command
 and query handlers.
 
-#### View Models
+#### View Models a.k.a Presenters
 
 For querying the system e.g. for an API response, create a ViewModel instead of using the main domain
 models. This allows for customised represents to be used including presentation logic, without filling
@@ -314,6 +320,60 @@ the domain models with presentation logic. A package: `somnambulist/read-models`
 this functionality via an active-record approach, however pure SQL / PDO could be used instead.
 
 See the read-models documentation for more details of working with the library.
+
+### Database Migrations
+
+Database migrations are handled by Doctrine Migrations. When writing your migrations it is strongly
+recommended to _not_ use the entity manager to persist records. If you need to change schema or structure
+this can make managing older migrations much more difficult.
+
+However: if you do need the entity manager you must add a factory override in the `doctrine_migrations.yaml`
+file and have the following:
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Resources\Factories;
+
+use Doctrine\Migrations\AbstractMigration;
+use Doctrine\Migrations\Version\DbalMigrationFactory;
+use Doctrine\Migrations\Version\MigrationFactory;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+
+/**
+ * Class MigrationFactoryDecorator
+ *
+ * From: https://symfony.com/doc/master/bundles/DoctrineMigrationsBundle/index.html#migration-dependencies
+ *
+ * @package    App\Resources\Factories
+ * @subpackage App\Resources\Factories\MigrationFactoryDecorator
+ */
+class MigrationFactoryDecorator implements MigrationFactory
+{
+    private MigrationFactory $factory;
+    private ContainerInterface $container;
+
+    public function __construct(DbalMigrationFactory $migrationFactory, ContainerInterface $container)
+    {
+        $this->factory   = $migrationFactory;
+        $this->container = $container;
+    }
+
+    public function createVersion(string $migrationClassName): AbstractMigration
+    {
+        $instance = $this->factory->createVersion($migrationClassName);
+
+        if ($instance instanceof ContainerAwareInterface) {
+            $instance->setContainer($this->container);
+        }
+
+        return $instance;
+    }
+}
+```
+
+The same goes for any other services you would like to inject into the migrations.
 
 ## Contributing
 

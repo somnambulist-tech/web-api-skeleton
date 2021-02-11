@@ -16,10 +16,7 @@ use Symfony\Component\BrowserKit\AbstractBrowser;
 trait BootTestClient
 {
 
-    /**
-     * @var AbstractBrowser
-     */
-    protected $__kernelBrowserClient;
+    protected ?AbstractBrowser $__kernelBrowserClient = null;
 
     /**
      * {@inheritDoc}

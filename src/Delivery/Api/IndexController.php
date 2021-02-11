@@ -2,7 +2,7 @@
 
 namespace App\Delivery\Api;
 
-use Somnambulist\ApiBundle\Controllers\ApiController;
+use Somnambulist\Bundles\ApiBundle\Controllers\ApiController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**

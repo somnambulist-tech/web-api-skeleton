@@ -20,7 +20,7 @@ site linked previously.
 
 To install Mutagen, use brew: `brew install mutagen-io/mutagen/mutagen`.
 
-To help work with Mutagen a helper library is available: [SyncIt for Mutagen](https://github.com/dave-redfern/somnambulist-sync-it).
+To help work with Mutagen a helper library is available: [SyncIt for Mutagen](https://github.com/somnambulist-tech/sync-it).
 To install this library, follow the instructions and optionally use the lazy install. Note that
 lazy install is performed at your own risk. 
 

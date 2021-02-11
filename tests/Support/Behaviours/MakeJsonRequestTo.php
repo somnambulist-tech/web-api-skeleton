@@ -13,7 +13,7 @@ use function sprintf;
 /**
  * Class MakeJsonRequestTo
  *
- * @package App\Tests\Support\Behaviours
+ * @package    App\Tests\Support\Behaviours
  * @subpackage App\Tests\Support\Behaviours\MakeJsonRequestTo
  */
 trait MakeJsonRequestTo
@@ -54,7 +54,7 @@ trait MakeJsonRequestTo
         $client  = $this->__kernelBrowserClient;
 
         if (isset($payload['files'])) {
-            $files = $payload['files'];
+            $files                  = $payload['files'];
             $server['CONTENT_TYPE'] = 'multipart/form-data';
             unset($payload['files']);
         }

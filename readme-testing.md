@@ -1,15 +1,16 @@
 # Testing
 
-This project has been configured to use PHPUnit 8.X, both via the Symfony bridge and in the
+This project has been configured to use PHPUnit 9.X, both via the Symfony bridge and in the
 composer.json file. If you require an alternative version be sure to update the settings. 
 
 __Note:__ by default xdebug is not installed in the docker containers. If you require code
-coverage support be sure to modify the Dockerfiles and add `php7-pecl-xdebug`.
+coverage support be sure to modify the Dockerfiles and add `php8-pecl-xdebug`.
 
 The following helpers are available by default in the `tests/Support` folder:
 
  * BootKernel - auto-boot the `App\Kernel` on test setUp
  * BootTestClient - auto-boot the test Client service on test setUp (use instead of BootKernel)
+ * CanRecordApiResponses - use with `somnambulist/api-client` to record API calls for test playback
  * DoctrineHelper - accessors for getting Doctrine EntityManager or a configured EntityLocator
  * GenerateRouteTo - use named routes conveniently in tests
  * MakeJsonRequestTo - wrap SF Client to make a JSON request to a resource (requires `BootTestClient`)
@@ -59,9 +60,11 @@ class MyUnitTest extends TestCase
 
     public function testDomainObject()
     {
-        $entity = $this->factory->from('object')->makeThing();
+        $entity = $this->factory()->from('object')->makeThing();
         // or because of __get magic...
-        $entity = $this->factory->object->makeThing();
+        $entity = $this->factory()->object->makeThing();
+        // or because of __call magic...
+        $entity = $this->factory()->object()->makeThing();
     }
 }
 ```
@@ -95,7 +98,7 @@ To setup PhpStorm to run your local Docker test suite, follow these steps:
  * Select your Docker option e.g. `Docker for Mac`
  * Save the changes
 
-See: [Docker Settings](https://www.jetbrains.com/help/phpstorm/2019.2/docker-connection-settings.html)
+See: [Docker Settings](https://www.jetbrains.com/help/phpstorm/2021.1/docker-connection-settings.html)
 for more help on setting up Docker connections.
 
 To configure the test environment requires setting up a remote interpreter, a PHPUnit interpreter and then a
@@ -124,7 +127,7 @@ project runtime configuration. This is done as follows:
  * Click `OK`
  * `Path mappings` should now show `<Project root>->/app`
  * Under `PHPUnit library` set `Path to script:` under `Composer autoloader` to `/app/vendor/autoload.php`
- * Click the refresh icon, PHPUnit 8.X should be found
+ * Click the refresh icon, PHPUnit 9.X should be found
  * Click `OK`
  * This should close the Preferences dialogue
 
@@ -150,5 +153,5 @@ and then `docker-compose up -d --build --force-recreate` to forcibly re-build th
 
 See the following resources for further help:
 
- * [PHPStorm Test Frameworks](https://www.jetbrains.com/help/phpstorm/2019.2/php-test-frameworks.html#PHP_test_frameworks_PHPUnit)
- * [PHPStorm Run Debug Config](https://www.jetbrains.com/help/phpstorm/2019.2/run-debug-configuration-phpunit.html)
+ * [PHPStorm Test Frameworks](https://www.jetbrains.com/help/phpstorm/2021.1/php-test-frameworks.html#PHP_test_frameworks_PHPUnit)
+ * [PHPStorm Run Debug Config](https://www.jetbrains.com/help/phpstorm/2021.1/run-debug-configuration-phpunit.html)
