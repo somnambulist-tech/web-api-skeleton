@@ -232,7 +232,7 @@ For example a query command may look like:
 ```php
 <?php
 
-use Somnambulist\Domain\Queries\AbstractQuery;
+use Somnambulist\Components\Domain\Queries\AbstractQuery;
 
 class FindObjectById extends AbstractQuery
 {
