@@ -19,4 +19,3 @@ class IndexController extends ApiController
         return new JsonResponse('Service is running; customise me to add service definitions');
     }
 }
-

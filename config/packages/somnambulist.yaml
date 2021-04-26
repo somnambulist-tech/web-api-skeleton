@@ -13,6 +13,10 @@ somnambulist_api:
         exception_to_json: true
         json_to_post: true
         request_id: true
+    openapi:
+        version: '1.0.0'
+        title: 'API Skeleton Service'
+        description: 'API documentation for the skeleton service.'
 
 somnambulist_form_request:
     subscribers:
