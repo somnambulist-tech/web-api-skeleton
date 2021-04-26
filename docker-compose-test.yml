@@ -22,7 +22,7 @@ services:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: secret
     volumes:
-      - ./src/Resources/docker/test/postgres:/docker-entrypoint-initdb.d
+      - ./config/docker/test/postgres:/docker-entrypoint-initdb.d
     networks:
       - backend
 
