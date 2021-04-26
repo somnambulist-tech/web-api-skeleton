@@ -1,5 +1,13 @@
 
+api.docs:
+    resource: '@SomnambulistApiBundle/Resources/config/routes.xml'
+
 api.index:
     path: /
     controller: 'App\Delivery\Api\IndexController'
     methods: [GET]
+    defaults:
+        document: true
+        operation: 'getListOfServices'
+        responses:
+            200: 'schemas/ServiceList'
