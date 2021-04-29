@@ -1,7 +1,7 @@
 version: '3.5'
 
 services:
-  app:
+  api-app:
     build:
       context: .
       dockerfile: config/docker/dev/app/Dockerfile
@@ -9,9 +9,9 @@ services:
       - mycompany_network_backend
     labels:
       traefik.enable: true
-      traefik.http.routers.dns.rule: "Host(`app.example.dev`)"
-      traefik.http.routers.dns.tls: true
-      traefik.http.services.dns.loadbalancer.server.port: 8080
+      traefik.http.routers.api-app.rule: "Host(`app.example.dev`)"
+      traefik.http.routers.api-app.tls: true
+      traefik.http.services.api-app.loadbalancer.server.port: 8080
 
   app-redis:
     image: redis:alpine

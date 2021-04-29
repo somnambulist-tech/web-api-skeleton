@@ -3,5 +3,5 @@ parameters:
 
 services:
     App\Resources\Fixtures\:
-        resource: '../src/Resources/Fixtures'
+        resource: '../tests/Support/Fixtures'
         tags: ['doctrine.fixture.orm']
