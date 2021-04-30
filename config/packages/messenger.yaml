@@ -36,15 +36,12 @@ framework:
                     exchange:
                         name: domain_events
                         type: fanout
-                        durable: true
             job_queue:
                 dsn: '%env(MESSENGER_TRANSPORT_DSN)%/job_queue'
                 options:
                     exchange:
                         name: job_queue
                         type: direct
-                        durable: true
-
             failed: 'doctrine://default?queue_name=failed'
             sync: 'sync://'
 
