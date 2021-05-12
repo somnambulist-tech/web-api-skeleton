@@ -28,6 +28,8 @@
     <listeners>
         <listener class="Symfony\Bridge\PhpUnit\SymfonyTestsListener"/>
         <listener class="DAMA\DoctrineTestBundle\PHPUnit\PHPUnitListener"/>
-        <listener class="Somnambulist\Bundles\ReadModels\PHPUnit\PHPUnitListener"/>
     </listeners>
+    <extensions>
+        <extension class="Somnambulist\Components\ReadModels\PHPUnit\PHPUnitListener"/>
+    </extensions>
 </phpunit>
