@@ -1,9 +1,9 @@
 somnambulist_api:
     exception_handler:
         converters:
-            Assert\InvalidArgumentException: Somnambulist\Bundles\ApiBundle\Services\Converters\AssertionExceptionConverter
-            Assert\LazyAssertionException: Somnambulist\Bundles\ApiBundle\Services\Converters\LazyAssertionExceptionConverter
-            Symfony\Component\Messenger\Exception\HandlerFailedException: Somnambulist\Bundles\ApiBundle\Services\Converters\HandlerFailedExceptionConverter
+            Assert\InvalidArgumentException: Somnambulist\Bundles\ApiBundle\Response\ExceptionConverters\AssertionExceptionConverter
+            Assert\LazyAssertionException: Somnambulist\Bundles\ApiBundle\Response\ExceptionConverters\LazyAssertionExceptionConverter
+            Symfony\Component\Messenger\Exception\HandlerFailedException: Somnambulist\Bundles\ApiBundle\Response\ExceptionConverters\HandlerFailedExceptionConverter
     request_handler:
         per_page: 20
         max_per_page: 100

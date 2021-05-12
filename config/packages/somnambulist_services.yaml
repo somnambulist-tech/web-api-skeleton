@@ -4,6 +4,12 @@ services:
         autowire: true
         autoconfigure: true
 
+    Somnambulist\Components\ReadModels\EventSubscribers\IdentityMapClearerSubscriber:
+        tags: ['kernel.event_subscriber']
+
+    Somnambulist\Components\ReadModels\EventSubscribers\IdentityMapClearerMessengerSubscriber:
+        tags: ['kernel.event_subscriber']
+
     Somnambulist\Components\Domain\Events\Publishers\DoctrineEventPublisher:
         tags: ['doctrine.event_subscriber']
 
@@ -22,13 +28,13 @@ services:
         alias: Somnambulist\Components\Domain\Events\Adapters\MessengerEventBus
         public: true
 
-    Somnambulist\Components\Domain\Events\Adapters\MessengerEventBus:
+    Somnambulist\Components\Domain\Jobs\Adapters\MessengerJobQueue:
 
     Somnambulist\Components\Domain\Jobs\JobQueue:
         alias: Somnambulist\Components\Domain\Jobs\Adapters\MessengerJobQueue
         public: true
 
-    Somnambulist\Components\Domain\Jobs\Adapters\MessengerJobQueue:
+    Somnambulist\Components\Domain\Events\Adapters\MessengerEventBus:
 
     Somnambulist\Components\Domain\Queries\QueryBus:
         alias: Somnambulist\Components\Domain\Queries\Adapters\MessengerQueryBus
