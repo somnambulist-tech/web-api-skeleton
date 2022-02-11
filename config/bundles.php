@@ -7,7 +7,7 @@ return [
     Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle::class => ['all' => true],
     DAMA\DoctrineTestBundle\DAMADoctrineTestBundle::class => ['test' => true],
     Liip\TestFixturesBundle\LiipTestFixturesBundle::class => ['dev' => true, 'test' => true, 'docker' => true],
-    Symfony\Bundle\DebugBundle\DebugBundle::class => ['dev' => true, 'test' => true],
+    Symfony\Bundle\DebugBundle\DebugBundle::class => ['dev' => true],
     Symfony\Bundle\MonologBundle\MonologBundle::class => ['all' => true],
     Symfony\Bundle\TwigBundle\TwigBundle::class => ['dev' => true, 'test' => true, 'docker' => true],
     Symfony\Bundle\WebProfilerBundle\WebProfilerBundle::class => ['dev' => true, 'test' => true, 'docker' => true],

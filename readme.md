@@ -1,6 +1,6 @@
-# Symfony Micro Service Starter Project
+# Symfony MicroService Starter Project
 
-This is a skeleton project that pre-configures a Symfony 5+ project for use as a micro service.
+This is a skeleton project that pre-configures a Symfony 6+ project for use as a microservice.
 This project is intended to be used in conjunction with: [Data Service](https://github.com/somnambulist-tech/data-service-skeleton)
 
 The setup includes:
@@ -54,7 +54,7 @@ or without the service name/template to use the wizard.
 This project uses `App` and `example.dev` throughout. Your first step would be to change the base PHP
 namespace (if desired). PhpStorms refactoring / renaming is highly recommended for this action.
 
-The domain name is set in several places, it is strongly recommended to change this to something more
+The domain name is set in several places, it is strongly recommended changing this to something more
 useful. The following files should be updated:
 
  * .env
