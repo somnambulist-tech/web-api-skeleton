@@ -12,20 +12,16 @@ framework:
         buses:
             command.bus:
                 middleware:
-                    - validation
                     - doctrine_transaction
 
             query.bus:
                 middleware:
-                    - validation
 
             event.bus:
                 middleware:
-                    - validation
 
             job.queue:
                 middleware:
-                    - validation
 
         transports:
             # https://symfony.com/doc/current/messenger.html#transport-configuration
@@ -41,7 +37,7 @@ framework:
                 options:
                     exchange:
                         name: job_queue
-                        type: direct
+                        type: fanout
             failed: 'doctrine://default?queue_name=failed'
             sync: 'sync://'
 
