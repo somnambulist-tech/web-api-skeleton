@@ -8,18 +8,14 @@ use function dirname;
 use function str_replace;
 
 /**
- * Trait CanRecordApiResponses
+ * Recording API Responses
  *
  * If using the somnambulist/api-client and Symfony HTTPClient for making Api requests,
- * add this trait and setup a decorator around the ApiClient service, and then API calls
+ * add this trait and set up a decorator around the ApiClient service, and then API calls
  * can be recorded to files for later playback in tests.
- *
- * @package    App\Tests\Support\Behaviours
- * @subpackage App\Tests\Support\Behaviours\CanRecordApiResponses
  */
 trait CanRecordApiResponses
 {
-
     protected function setUpTests(): void
     {
         $this->setRecordingStore();

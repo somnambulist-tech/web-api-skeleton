@@ -28,9 +28,9 @@ doctrine:
                 prefix: 'App\Domain\Models'
                 alias: App
 
-            Somnambulist\Components\Domain\Entities\Types:
+            Somnambulist\Components\Models\Types:
                 is_bundle: false
                 type: xml
                 dir: '%kernel.project_dir%/config/mappings/somnambulist'
-                prefix: 'Somnambulist\Components\Domain\Entities\Types'
+                prefix: 'Somnambulist\Components\Models\Types'
                 alias: Somnambulist

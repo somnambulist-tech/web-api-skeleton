@@ -7,10 +7,7 @@ services:
     Somnambulist\Components\Events\Publishers\DoctrineEventPublisher:
         tags: ['doctrine.event_subscriber']
 
-    Somnambulist\Components\Events\Adapters\MessengerSerializer:
-
-    somnambulist.domain.event_serializer:
-        alias: Somnambulist\Components\Events\Adapters\MessengerSerializer
+    Somnambulist\Components\Events\Adapters\DomainEventNormalizer:
 
     Somnambulist\Components\Commands\CommandBus:
         alias: Somnambulist\Components\Commands\Adapters\MessengerCommandBus

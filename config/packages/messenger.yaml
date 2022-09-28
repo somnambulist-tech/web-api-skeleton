@@ -27,7 +27,6 @@ framework:
             # https://symfony.com/doc/current/messenger.html#transport-configuration
             domain_events:
                 dsn: '%env(MESSENGER_TRANSPORT_DSN)%/domain_events'
-                serializer: somnambulist.domain.event_serializer
                 options:
                     exchange:
                         name: domain_events
@@ -43,7 +42,7 @@ framework:
 
         routing:
             # Route your messages to the transports
-            Somnambulist\Components\Domain\Commands\AbstractCommand: sync
-            Somnambulist\Components\Domain\Events\AbstractEvent: domain_events
-            Somnambulist\Components\Domain\Jobs\AbstractJob: job_queue
-            Somnambulist\Components\Domain\Queries\AbstractQuery: sync
+            Somnambulist\Components\Commands\AbstractCommand: sync
+            Somnambulist\Components\Events\AbstractEvent: domain_events
+            Somnambulist\Components\Jobs\AbstractJob: job_queue
+            Somnambulist\Components\Queries\AbstractQuery: sync

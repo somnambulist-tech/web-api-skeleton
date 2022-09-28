@@ -6,25 +6,19 @@ use Faker\Factory;
 use Faker\Generator;
 use InvalidArgumentException;
 use RuntimeException;
-use Somnambulist\Components\Domain\Entities\Types\Identity\Uuid;
-use Somnambulist\Components\Domain\Utils\IdentityGenerator;
+use Somnambulist\Components\Models\Types\Identity\Uuid;
+use Somnambulist\Components\Utils\IdentityGenerator;
 use function array_key_exists;
 use function array_keys;
 use function in_array;
 use function sprintf;
 
 /**
- * Class ObjectFactoryHelper
- *
- * @package    App\Tests\Support
- * @subpackage App\Tests\Support\ObjectFactoryHelper
- *
  * @property-read Uuid      $uuid
  * @property-read Generator $faker
  */
 class ObjectFactoryHelper
 {
-
     private array     $factories;
     private Generator $faker;
 

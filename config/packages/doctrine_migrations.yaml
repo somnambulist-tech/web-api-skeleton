@@ -1,6 +1,6 @@
 doctrine_migrations:
     migrations_paths:
-        'App\Resources\Migrations': '%kernel.project_dir%/src/Resources/Migrations'
+        'App\Resources\Migrations': '%kernel.project_dir%/migrations'
     enable_profiler: '%kernel.debug%'
     services:
         # add factories / services for your migrations here
