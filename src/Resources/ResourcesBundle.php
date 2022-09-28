@@ -2,7 +2,7 @@
 
 namespace App\Resources;
 
-use Somnambulist\Components\Domain\Doctrine\TypeBootstrapper;
+use Somnambulist\Components\Doctrine\TypeBootstrapper;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**

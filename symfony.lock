@@ -283,11 +283,17 @@
     "somnambulist/domain": {
         "version": "2.2.7"
     },
+    "somnambulist/form-request-bundle": {
+        "version": "2.0.5"
+    },
     "somnambulist/fractal-bundle": {
         "version": "1.0.0"
     },
     "somnambulist/read-models": {
         "version": "1.0.2"
+    },
+    "somnambulist/read-models-bundle": {
+        "version": "2.1.0"
     },
     "somnambulist/validation": {
         "version": "1.0.0"
