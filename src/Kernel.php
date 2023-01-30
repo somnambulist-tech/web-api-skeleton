@@ -6,9 +6,8 @@ use IlluminateAgnostic\Str\Support\Str;
 use InvalidArgumentException;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;
-use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
+
 use function get_class;
 use function get_parent_class;
 use function php_sapi_name;
@@ -17,12 +16,6 @@ use function sprintf;
 use function str_replace;
 use function ucfirst;
 
-/**
- * Class Kernel
- *
- * @package    App
- * @subpackage App\Kernel
- */
 class Kernel extends BaseKernel
 {
     use MicroKernelTrait;
@@ -43,20 +36,5 @@ class Kernel extends BaseKernel
         }
 
         return $class;
-    }
-
-    protected function configureContainer(ContainerConfigurator $container): void
-    {
-        $container->import('../config/{packages}/*.yaml');
-        $container->import('../config/{packages}/'.$this->environment.'/*.yaml');
-        $container->import('../config/{services}.yaml');
-        $container->import('../config/{services}_'.$this->environment.'.yaml');
-    }
-
-    protected function configureRoutes(RoutingConfigurator $routes): void
-    {
-        $routes->import('../config/{routes}/'.$this->environment.'/*.yaml');
-        $routes->import('../config/{routes}/*.yaml');
-        $routes->import('../config/{routes}.yaml');
     }
 }

@@ -1,14 +1,11 @@
 doctrine:
     dbal:
         # configure these for your database server
-        driver: 'pdo_pgsql'
-        server_version: '12.0'
         url: '%env(resolve:DATABASE_URL)%'
         schema_filter: '~^(?!messenger_messages)~'
         mapping_types:
             # doctrine + postgres sometimes screws up and prefixes text with an _...
             _text: string
-
     orm:
         auto_generate_proxy_classes: true
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
@@ -29,8 +26,14 @@ doctrine:
                 alias: App
 
             Somnambulist\Components\Models\Types:
-                is_bundle: false
+                mapping: true
                 type: xml
                 dir: '%kernel.project_dir%/config/mappings/somnambulist'
+                is_bundle: false
                 prefix: 'Somnambulist\Components\Models\Types'
                 alias: Somnambulist
+
+when@prod:
+    doctrine:
+        orm:
+            auto_generate_proxy_classes: false

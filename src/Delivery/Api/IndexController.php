@@ -5,15 +5,8 @@ namespace App\Delivery\Api;
 use Somnambulist\Bundles\ApiBundle\Controllers\ApiController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-/**
- * Class IndexController
- *
- * @package App\Delivery\Api
- * @subpackage App\Delivery\Api\IndexController
- */
 class IndexController extends ApiController
 {
-
     public function __invoke()
     {
         return new JsonResponse('Service is running; customise me to add service definitions');

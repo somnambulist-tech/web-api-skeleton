@@ -9,7 +9,7 @@ framework:
             doctrine.result_cache_pool:
                 adapter: cache.app
 
-            cache.app.redis_cache:
+            cache.app.app_service:
                 adapter: cache.app
                 public: true
                 default_lifetime: 3600

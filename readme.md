@@ -67,7 +67,7 @@ You should be sure to read [Compiled Containers](readme-compiled-containers.md).
 The following docker services are pre-configured for development:
 
  * Redis
- * PHP 8.0 running php-pm 2.X
+ * PHP 8.1 running php-pm 2.X
 
 Test config includes all services to successfully run tests.
 
@@ -82,7 +82,7 @@ the containers started via `docker-compose` will be prefixed with `invoice-servi
 lot of docker projects, they may have similar folder names, so using this constant avoids collisions.
 
 The second constant that needs setting is `APP_SERVICE_APP`. This is the name of the PHP application
-container. By default this is `app`. It is strongly recommended to change this to something that is
+container. By default, this is `app`. It is strongly recommended to change this to something that is
 more unique. If you do change this, be sure to change the container name in the `docker-compose*.yml`
 files otherwise it will not be used. This name is used by SyncIt to resolve the application container
 and by the `bin/dc-*` scripts.

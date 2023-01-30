@@ -39,9 +39,6 @@ services:
     # Allow injecting service container in Doctrine Migrations
     #
     Doctrine\Migrations\Version\DbalMigrationFactory:
-    App\Resources\Factories\MigrationFactoryDecorator:
-
-
 
     #
     # App Services that need container resolution
@@ -74,3 +71,11 @@ services:
     #App\Domain\Services\Repositories\MyModelRepository:
     #    alias:  App\Infrastructure\Persistence\Repositories\MyModelRepository
     #    public: true
+
+when@dev: &dev
+    services:
+        App\Resources\Fixtures\:
+            resource: '../tests/Support/Fixtures'
+            tags: [ 'doctrine.fixture.orm' ]
+
+when@test: *dev
