@@ -12,20 +12,20 @@ each process and as the main `CMD` run that console process. For example: to run
 `messenger:consume` command you could set up the following container:
 
 ```dockerfile
-FROM somnambulist/php-ppm:8.0-latest
+FROM somnambulist/php-ppm:8.3-latest
 ENV TERM=xterm-256color
 
 RUN apk --update add ca-certificates \
     && apk update \
     && apk upgrade \
     && apk --no-cache add -U \
-    php8-pdo_pgsql \
-    php8-pgsql \
-    php8-pecl-amqp \
+    php83-pdo_pgsql \
+    php83-pgsql \
+    php83-pecl-amqp \
     && rm -rf /var/cache/apk/* /tmp/*
 
 # setup custom PHP ini files
-COPY config/docker/messenger/php /etc/php8/conf.d/
+COPY config/docker/messenger/php /etc/php83/conf.d/
 
 WORKDIR /app
 
@@ -78,21 +78,21 @@ same as the other configurations. For example and `src/Resources/docker/dev/supe
 folder and then create a new `Dockerfile` that contains:
 
 ```dockerfile
-FROM somnambulist/php-ppm:8.0-latest
+FROM somnambulist/php-ppm:8.3-latest
 ENV TERM=xterm-256color
 
 RUN apk --update add ca-certificates \
     && apk update \
     && apk upgrade \
     && apk --no-cache add -U \
-    php8-pdo_pgsql \
-    php8-pgsql \
-    php8-pecl-amqp \
+    php83-pdo_pgsql \
+    php83-pgsql \
+    php83-pecl-amqp \
     supervisor \
     && rm -rf /var/cache/apk/* /tmp/*
 
 # setup custom PHP ini files
-COPY config/docker/supervisor/custom.ini /etc/php8/conf.d/zz-custom.ini
+COPY config/docker/supervisor/custom.ini /etc/php83/conf.d/zz-custom.ini
 
 WORKDIR /app
 

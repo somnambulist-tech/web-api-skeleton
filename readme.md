@@ -29,7 +29,7 @@ __Note:__ the data services pieces have been moved to a separate project to keep
 scope narrow. See [Data Service](https://github.com/somnambulist-tech/data-service-skeleton) for the basic
 files.
 
-If you are working with micro services then be sure to check out: [Project Manager](https://github.com/somnambulist-tech/project-manager)
+If you are working with micro-services then be sure to check out: [Project Manager](https://github.com/somnambulist-tech/project-manager)
 a CLI toolkit that makes working with multiple services a little bit easier.
 
 ## Getting Started
@@ -67,7 +67,7 @@ You should be sure to read [Compiled Containers](readme-compiled-containers.md).
 The following docker services are pre-configured for development:
 
  * Redis
- * PHP 8.1 running php-pm 2.X
+ * PHP 8.3 running php-pm
 
 Test config includes all services to successfully run tests.
 

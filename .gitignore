@@ -106,3 +106,4 @@ Temporary Items
 
 # PhpStorm 2020.2+ now stores hardcoded paths in the CLI tool config
 /.idea/commandlinetools/Symfony*.xml
+/.phpunit.cache
